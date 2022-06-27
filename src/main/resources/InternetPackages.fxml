@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToggleButton?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<GridPane alignment="CENTER" hgap="5" vgap="5" xmlns:fx="http://javafx.com/fxml"
+          fx:controller="org.example.InternetPackageController">
+
+    <fx:define>
+        <ToggleGroup fx:id="speedToggle"/>
+    </fx:define>
+    <fx:define>
+        <ToggleGroup fx:id="bandwidthToggle"/>
+    </fx:define>
+    <fx:define>
+        <ToggleGroup fx:id="durationToggle"/>
+    </fx:define>
+
+    <padding>
+        <Insets bottom="15" left="15" right="15" top="15"/>
+    </padding>
+    <HBox alignment="TOP_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label text="Add new Internet Package" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+            <font>
+                <Font size="30"/>
+            </font>
+        </Label>
+    </HBox>
+    <HBox alignment="TOP_RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Button mnemonicParsing="false" fx:id="closeButton" onAction="#closeForm"/>
+    </HBox>
+<HBox alignment="TOP_RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="1">
+    <VBox>
+    <TextField GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1" fx:id="firstName"
+               promptText="First Name"/>
+    <TextField GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="1" fx:id="lastName"
+               promptText="Last Name"/>
+    <TextField GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="1" fx:id="address"
+               promptText="Address"/>
+    <HBox alignment="CENTER_LEFT">
+        <HBox>
+        <Label text="Speed(mb/s):"/></HBox>
+        <HBox>
+        <ToggleButton mnemonicParsing="false" text="2" toggleGroup="$speedToggle"><userData>2</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="5" toggleGroup="$speedToggle"><userData>5</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="10" toggleGroup="$speedToggle"><userData>10</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="20" toggleGroup="$speedToggle"><userData>20</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="50" toggleGroup="$speedToggle"><userData>50</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="100" toggleGroup="$speedToggle"><userData>100</userData></ToggleButton>
+        </HBox></HBox>
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Bandwidth:"/>
+        <ToggleButton mnemonicParsing="false" text="1" toggleGroup="$bandwidthToggle"><userData>1</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="5" toggleGroup="$bandwidthToggle"><userData>5</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="10" toggleGroup="$bandwidthToggle"><userData>10</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="100" toggleGroup="$bandwidthToggle"><userData>100</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="Flat" toggleGroup="$bandwidthToggle"><userData>Flat</userData></ToggleButton>
+    </HBox>
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Duration:"/>
+        <ToggleButton mnemonicParsing="false" text="1 year" toggleGroup="$durationToggle"><userData>1 year</userData></ToggleButton>
+        <ToggleButton mnemonicParsing="false" text="2 years" toggleGroup="$durationToggle"><userData>2 years</userData></ToggleButton>
+    </HBox>
+
+</VBox>
+
+<VBox GridPane.columnIndex="2">
+    <HBox>
+        <TableView fx:id="tableView" items="${controller.internetPackages}">
+            <columns>
+            <TableColumn text="First Name">
+                <cellValueFactory><PropertyValueFactory property="firstName"/></cellValueFactory>
+            </TableColumn>
+                <TableColumn text="Last Name">
+                    <cellValueFactory><PropertyValueFactory property="lastName"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Address">
+                    <cellValueFactory><PropertyValueFactory property="address"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Speed(mb/s)">
+                    <cellValueFactory><PropertyValueFactory property="speed"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Bandwidth">
+                    <cellValueFactory><PropertyValueFactory property="bandwidth"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Duration">
+                    <cellValueFactory><PropertyValueFactory property="duration"/></cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </HBox>
+</VBox>
+</HBox>
+    <HBox alignment="BOTTOM_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <Button mnemonicParsing="false" text="Save" fx:id="saveButton" onAction="#saveInternetPackage"/>
+        <Button mnemonicParsing="false" text="Clear" fx:id="clearButton" onAction="#clearForm"/>
+        <Button mnemonicParsing="false" text="Delete" fx:id="deleteButton" onAction="#deleteInternetPackage"/>
+    </HBox>
+
+</GridPane>
